@@ -26,8 +26,8 @@ if protocol == 'tcp':
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # Connect the socket to the port where the server is listening
-    # server_address = ('172.19.90.35', 10000)
-    server_address = ('localhost', 10000)
+    server_address = ('172.19.90.35', 10000)
+    # server_address = ('localhost', 10000)
     print('connecting to server')
     sock.connect(server_address)
     print('connected to server')
@@ -43,7 +43,7 @@ if protocol == 'tcp':
             total_messages_sent += 1
             ack = False
             while not ack:
-                response = sock.recv(99999)
+                response = sock.recv(9999)
                 ack = True
         else:
             print(str(message) + '/' + str(nr_messages))

@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 let busboy = require('connect-busboy')
 var fs = require('fs');
+const path = require('path');
 
 
 app.all('*', function (req, res, next) {
@@ -21,17 +22,25 @@ app.get('/', function (req, res) {
 });
 
 app.use(busboy());
+app.use(express.json());
+
 app.post('/', function (req, res) {
-    req.pipe(req.busboy);
-    req.busboy.on('file', function(fieldname, file, filename) {
-        var fstream = fs.createWriteStream('./files/' + filename); 
-        file.pipe(fstream);
-        fstream.on('close', function () {
-            res.send('upload succeeded!');
+    let fileName = './models/' + req.body.id + '.json';
+    fs.writeFile(fileName, JSON.stringify(req.body), 'utf8', () => {});
+    res.send('you uploaded file');
+});
+
+app.get('/models', function (req, res)  {
+    let models = [];
+    const directoryPath = path.join(__dirname, 'models');
+    fs.readdir(directoryPath, function (err, files) {
+        files.forEach(file => {
+            let content = fs.readFileSync('./models/' + file, {encoding: 'utf-8'});
+            models.push(JSON.parse(content));
         });
+        res.send(JSON.stringify(models));
     });
-    // res.send('you uploaded file');
-})
+});
 
 
 app.get('/welcome', function (req, res) {
@@ -39,6 +48,6 @@ app.get('/welcome', function (req, res) {
 });
 
 
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080.');
+app.listen(8081, function () {
+    console.log('Example app listening on port 8081.');
 });

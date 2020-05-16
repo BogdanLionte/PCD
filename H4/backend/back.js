@@ -47,6 +47,15 @@ app.get('/welcome', function (req, res) {
     res.send('<b>Hello</b> welcome to my http server made with express');
 });
 
+app.get('/models/delete/:id', function (req, res) {
+
+    console.log('deleting ' + req.params.id);
+
+    fs.unlinkSync('./models/' + req.params.id + '.json');
+
+    res.send('deleted ' + req.params.id);
+
+});
 
 app.listen(8081, function () {
     console.log('Example app listening on port 8081.');

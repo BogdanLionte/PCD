@@ -38,7 +38,7 @@ export default class ShowItemsController extends ContainerController {
                     }
                 )
             console.log(JSON.stringify(model));
-            this.setModel(JSON.parse(JSON.stringify(model)));
+            this.model = this.setModel(JSON.parse(JSON.stringify(model)));
             }
         );
 

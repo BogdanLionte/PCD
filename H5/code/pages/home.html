@@ -1,0 +1,14 @@
+<psk-page title="Home">
+	<psk-container>
+		<psk-form controller-name="ShowItemsController">
+			<psk-for-each data-view-model="items">
+				<psk-form-row>
+					<psk-text-input view-model="id"></psk-text-input>
+					<psk-text-input view-model="name"></psk-text-input>
+					<psk-text-input view-model="quantity"></psk-text-input>
+					<psk-text-input view-model="price"></psk-text-input>
+				</psk-form-row>
+			</psk-for-each>
+		</psk-form>
+	</psk-container>
+</psk-page>

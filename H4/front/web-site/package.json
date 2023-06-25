@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "octopus": "git+https://github.com/PrivateSky/octopus.git#1.0.1",
-    "local-web-server": "^3.0.7"
+    "local-web-server": "^5.3.0"
   },
   "keywords": [
     "cardinal"
